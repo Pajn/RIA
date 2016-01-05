@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "es6",
+    "module": "es6",
+    "outDir": ".tmp/ts"
+  },
+  "filesGlob": [
+    "*.ts",
+    "app/**/*.tsx",
+    "app/**/*.ts",
+    "typings/*.ts",
+    "typings_custom/**/*.ts",
+    "node_modules/decorated-redux/typings.d.ts",
+    "node_modules/raxa-common/lib/**/*.ts",
+    "node_modules/websocket-redux/typings.d.ts"
+  ],
+  "files": [],
+  "formatCodeOptions": {
+    "indentSize": 2,
+    "tabSize": 2,
+    "newLineCharacter": "\n",
+    "convertTabsToSpaces": true,
+    "insertSpaceAfterCommaDelimiter": true,
+    "insertSpaceAfterSemicolonInForStatements": true,
+    "insertSpaceBeforeAndAfterBinaryOperators": true,
+    "insertSpaceAfterKeywordsInControlFlowStatements": true,
+    "insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+    "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+    "placeOpenBraceOnNewLineForFunctions": false,
+    "placeOpenBraceOnNewLineForControlBlocks": false
+  },
+  "compileOnSave" : false
+}
