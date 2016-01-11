@@ -14,9 +14,10 @@ class ServerDevices extends Devices {
     if (!plugin) {
       throw clientError('Invalid Plugin');
     }
-    if (!plugin.definition[device.deviceClass]) {
+    if (!plugin.definition.deviceClasses[device.deviceClass]) {
       throw clientError('Invalid Device Class');
     }
+    console.log('state', store.getState());
     device.id = store.getState().devices.nextId;
     device = await plugin.onDeviceCreated(device) || device;
     dispatch(actions.deviceAdded, {device});

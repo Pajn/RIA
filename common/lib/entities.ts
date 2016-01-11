@@ -47,7 +47,7 @@ export interface Device {
   /**
    * A list with names of the Interfaces that the Device created from this class implements.
    */
-  interfaces: string[];
+  interfaces?: string[];
   /**
    * Status of the device as required by the implemented interfaces.
    * Every implemented interface with status have its own object with its statues.

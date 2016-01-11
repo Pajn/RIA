@@ -6,7 +6,7 @@ const production = process.env.NODE_ENV === 'production';
 
 var config = {
   debug: !production,
-  devtool: production ? '' : '',
+  devtool: production ? '' : 'source-map',
   entry: {
     js: ['babel-polyfill', './app/app'],
     html: './app/index.html',

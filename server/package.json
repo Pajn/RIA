@@ -4,6 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npm-run-all postinstall:*",
+    "postinstall:copy_base_config": "cp tsconfig.base.json tsconfig.json",
+    "postinstall:tsd": "tsd install",
+    "postinstall:tpm": "tpm install",
+    "postinstall:tsconfig_glob": "npm run tsconfig",
+    "tsconfig": "tsconfig -i 2",
     "prepublish": "npm-run-all prepublish:*",
     "prepublish:typescript": "tsc",
     "prepublish:babel": "babel --out-dir bin .tmp --presets es2015",

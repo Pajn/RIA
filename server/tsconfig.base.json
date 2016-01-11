@@ -14,6 +14,7 @@
     "typings_custom/**/*.ts",
     "node_modules/decorated-redux/typings.d.ts",
     "node_modules/raxa-common/lib/**/*.ts",
+    "node_modules/versioned-redux/typings.d.ts",
     "node_modules/websocket-redux/typings.d.ts"
   ],
   "files": [],

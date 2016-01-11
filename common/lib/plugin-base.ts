@@ -18,7 +18,9 @@ export class Plugin {
    * configuration or return undefined to don't do anything at all.
    * If a Promise is returned then RAXA will wait for it to be resolved.
    */
-  onDeviceCreated(device: Device): void|Device|Promise<void|Device> {}
+  onDeviceCreated(device: Device): void|Device|Promise<void|Device> {
+    return;
+  }
 
   /**
    * Called when a device owned by the plugin is beeing called.
@@ -32,5 +34,7 @@ export class Plugin {
    * Called when the plugin is stopped, either becuse of beeing deactivated or RAXA stopping.
    * If a Promise is returned then RAXA will wait for it to be resolved.
    */
-  stop(): void|Promise<void> {}
+  stop(): void|Promise<void> {
+    return;
+  }
 }

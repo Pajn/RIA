@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall:copy_base_config": "cp tsconfig.base.json tsconfig.json",
+    "postinstall:tsd": "tsd install",
+    "postinstall:tpm": "tpm install",
+    "postinstall:tsconfig_glob": "npm run tsconfig",
     "tsconfig": "tsconfig -i 2",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

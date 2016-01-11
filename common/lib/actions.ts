@@ -9,15 +9,13 @@ interface Action<T> extends DecoratedAction<T> {
 }
 
 class Actions {
-  deviceAdded: Action<{device: Device}> = {meta: {toClient: true}};
-  deviceUpdated: Action<{device: Device}> = {meta: {toClient: true}};
-  deviceRemoved: Action<{device: Device}> = {meta: {toClient: true}};
+  deviceAdded: Action<{device: Device}> = {meta: {}};
+  deviceUpdated: Action<{device: Device}> = {meta: {}};
+  deviceRemoved: Action<{device: Device}> = {meta: {}};
 
   pluginAdded: Action<{plugin: PluginConfiguration}> = {meta: {toClient: true}};
   pluginUpdated: Action<{plugin: PluginConfiguration}> = {meta: {toClient: true}};
   pluginRemoved: Action<{plugin: PluginConfiguration}> = {meta: {toClient: true}};
-
-  syncState: Action<any> = {meta: {}};
 }
 
 export const actions = createActions(Actions);

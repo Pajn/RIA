@@ -1,7 +1,9 @@
 .tmp/
+bin/
 dist/
 node_modules/
-typings/**/*
+*/typings/**/*
+*/typings_custom/**/*
 tsconfig.json
 npm-debug.log
 

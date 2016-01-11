@@ -3,7 +3,11 @@ import {Device} from 'raxa-common/lib/entities';
 import {devices as deviceRpc} from 'raxa-common/lib/remote-procedures/devices';
 import {stateful} from '../lib/store';
 
-@stateful(state => ({devices: Object.values(state.devices)}))
+@stateful(state => ({
+  devices: Object.entries(state.devices)
+                 .filter(([key]) => !isNaN(+key)) // Only allow numeric values
+                 .map(([key, value]) => value)
+}))
 export class Devices extends React.Component<{}, {devices: Device[]}> {
 
   render() {
@@ -12,10 +16,10 @@ export class Devices extends React.Component<{}, {devices: Device[]}> {
     return (
       <div>
         <ul>
-          {devices.map(device => <li>{device.name}</li>)}
+          {devices.map(({id, name}) => <li key={id}>{name}</li>)}
         </ul>
         <button onClick={() => {
-          deviceRpc.createDevice({id: 1, name: 'test', plugin: 't', deviceClass: 't', interfaces: []});
+          deviceRpc.createDevice({name: 'test', plugin: 't', deviceClass: 't'});
         }}>Create Device</button>
       </div>
     );

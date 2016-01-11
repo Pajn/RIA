@@ -9,5 +9,4 @@ export const devices = createReducer<DeviceState & {nextId: number}>({nextId: 1}
   })
   .when(actions.deviceUpdated, (state, {device}) => updateIn(device.id, device, state))
   .when(actions.deviceRemoved, (state, {device}) => removeIn(device.id, state))
-  .when(actions.syncState, (state, newState) => newState.devices || state)
   .build();
