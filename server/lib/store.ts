@@ -1,24 +1,22 @@
-import {reactStore} from 'decorated-redux/react';
+import nedb from 'nedb-persist';
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
-// import {persistStore, autoRehydrate} from 'redux-persist'
-import {trackVersion} from 'versioned-redux';
-import {websocketMiddleware} from 'websocket-redux/lib/server';
-import {syncStoreEnhancer} from 'websocket-redux/lib/sync';
+import {reactStore} from 'redux-decorated/react';
+import {persistStore, autoRehydrate} from 'redux-persist'
+import {websocketMiddleware} from 'redux-websocket/lib/server';
+import {syncStoreEnhancer} from 'redux-websocket/lib/sync';
 import {actions} from 'raxa-common/lib/actions';
 import {State} from 'raxa-common/lib/state';
 import {devices} from './reducers/device';
 import {webSocketServer} from './websocket';
 
-// console.log(syncStoreEnhancer);
-
 const finalCreateStore = compose(
-  // autoRehydrate(),
+  autoRehydrate(),
   syncStoreEnhancer({connection: webSocketServer, whitelist: ['devices']}),
   applyMiddleware(websocketMiddleware({server: webSocketServer, actions}))
 )(createStore);
 
 export const store = finalCreateStore(combineReducers({devices, versions: state => state || {}}));
-// persistStore(store);
+persistStore(store, {storage: nedb({filename: 'db'})});
 
 const helpers = reactStore<State>(store);
 

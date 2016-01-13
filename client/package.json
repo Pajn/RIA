@@ -8,7 +8,7 @@
     "postinstall:copy_base_config": "cp tsconfig.base.json tsconfig.json",
     "postinstall:tsd": "tsd install",
     "postinstall:tpm": "tpm install",
-    "postinstall:tsconfig_glob": "npm run tsconfig_glob",
+    "postinstall:tsconfig_glob": "npm run tsconfig",
     "start": "webpack-dev-server --hot --inline",
     "lint": "tslint --rules-dir tools/lint-rules `find app -name '*.ts' -o -name '*.tsx'`",
     "tsconfig": "tsconfig -i 2",
@@ -20,14 +20,15 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "decorated-redux": "^0.1.1",
     "history": "^1.13.1",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-router": "^1.0.0-rc3",
     "reconnecting-websocket": "^1.0.4",
     "redux": "^3.0.4",
-    "redux-persist": "^1.5.0"
+    "redux-decorated": "^0.1.1",
+    "redux-persist": "^1.5.0",
+    "redux-websocket": "^0.1.0"
   },
   "devDependencies": {
     "babel": "^6.0.15",

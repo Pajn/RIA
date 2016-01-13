@@ -9,13 +9,13 @@
   },
   "filesGlob": [
     "lib/**/*.ts",
-    "node_modules/decorated-redux/typings.d.ts",
+    "node_modules/redux-decorated/typings.d.ts",
     "node_modules/versioned-redux/typings.d.ts",
-    "node_modules/websocket-redux/typings.d.ts",
+    "node_modules/redux-websocket/typings.d.ts",
     "typings/*.ts"
   ],
   "files": [
-    "node_modules/websocket-redux/typings.d.ts"
+    "node_modules/redux-websocket/typings.d.ts"
   ],
   "formatCodeOptions": {
     "indentSize": 2,

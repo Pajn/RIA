@@ -10,9 +10,9 @@
     "postinstall:tpm": "tpm install",
     "postinstall:tsconfig_glob": "npm run tsconfig",
     "tsconfig": "tsconfig -i 2",
-    "prepublish": "npm-run-all prepublish:*",
-    "prepublish:typescript": "tsc",
-    "prepublish:babel": "babel --out-dir bin .tmp --presets es2015",
+    "build": "npm-run-all build:*",
+    "build:typescript": "tsc",
+    "build:babel": "babel --out-dir bin .tmp --presets es2015",
     "watch": "npm-run-all --parallel watch:*",
     "watch:typescript": "tsc --watch",
     "watch:babel": "babel --out-dir bin .tmp --presets es2015 --watch"
@@ -21,10 +21,11 @@
   "license": "Apache-2.0",
   "dependencies": {
     "babel-polyfill": "^6.3.14",
-    "decorated-redux": "^0.1.1",
     "express": "^4.13.3",
     "redux": "^3.0.4",
+    "redux-decorated": "^0.1.2",
     "redux-persist": "^1.5.0",
+    "redux-websocket": "^0.1.0",
     "require-dir": "^0.3.0"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-import {createReducer, removeIn, updateIn} from 'decorated-redux';
+import {createReducer, removeIn, updateIn} from 'redux-decorated';
 import {actions} from 'raxa-common/lib/actions';
 import {DeviceState} from 'raxa-common/lib/state';
 

@@ -1,5 +1,5 @@
-import {WebSocketServer} from 'websocket-redux/lib/server';
-import {useWebSocketServer} from 'websocket-redux/lib/rpc/server';
+import {WebSocketServer} from 'redux-websocket/lib/server';
+import {useWebSocketServer} from 'redux-websocket/lib/rpc/server';
 
 export let webSocketServer;
 

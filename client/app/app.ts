@@ -1,4 +1,4 @@
-import {useClient} from 'websocket-redux/lib/rpc';
+import {useClient} from 'redux-websocket/lib/rpc';
 useClient();
 
 require('./index');

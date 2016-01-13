@@ -1,4 +1,4 @@
-import {Action as DecoratedAction, createActions} from 'decorated-redux';
+import {Action as DecoratedAction, createActions} from 'redux-decorated';
 import {Device, PluginConfiguration} from './entities';
 
 interface Action<T> extends DecoratedAction<T> {
@@ -15,7 +15,7 @@ class Actions {
 
   pluginAdded: Action<{plugin: PluginConfiguration}> = {meta: {toClient: true}};
   pluginUpdated: Action<{plugin: PluginConfiguration}> = {meta: {toClient: true}};
-  pluginRemoved: Action<{plugin: PluginConfiguration}> = {meta: {toClient: true}};
+  pluginRemoved: Action<{plugin: PluginConfiguration}> = {meta: {toClient: true, toServer: true}};
 }
 
 export const actions = createActions(Actions);

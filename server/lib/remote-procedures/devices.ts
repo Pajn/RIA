@@ -1,5 +1,5 @@
 'use strict';
-import {clientError, remoteProcedures} from 'websocket-redux/lib/rpc/server';
+import {clientError, remoteProcedures} from 'redux-websocket/lib/rpc/server';
 import {actions} from 'raxa-common/lib/actions';
 import {Call, Device} from 'raxa-common/lib/entities';
 import {Devices} from 'raxa-common/lib/remote-procedures/devices';

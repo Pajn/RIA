@@ -19,11 +19,11 @@ var config = {
     loaders: [
       {
         test: /\.tsx?$/,
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!raxa-).*/,
         loaders: [
           'react-hot',
           'babel?' + JSON.stringify({
-            presets: ["react", "es2015", "stage-1"],
+            presets: ['react', 'es2015', 'stage-1'],
             plugins: production
               ? ['transform-react-constant-elements', 'transform-react-inline-elements']
               : [],

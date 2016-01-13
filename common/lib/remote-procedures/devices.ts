@@ -1,4 +1,4 @@
-import {remoteProcedures} from 'websocket-redux/lib/rpc';
+import {remoteProcedures} from 'redux-websocket/lib/rpc';
 import {Call, Device} from '../entities.ts';
 
 @remoteProcedures()
