@@ -11,7 +11,7 @@
     "postinstall:tsconfig_glob": "npm run tsconfig",
     "tsconfig": "tsconfig -i 2",
     "build": "npm-run-all build:*",
-    "build:typescript": "tsc",
+    "build:typescript": "tsc -p .",
     "build:babel": "babel --out-dir bin .tmp --presets es2015",
     "watch": "npm-run-all --parallel watch:*",
     "watch:typescript": "tsc --watch",
@@ -22,6 +22,8 @@
   "dependencies": {
     "babel-polyfill": "^6.3.14",
     "express": "^4.13.3",
+    "nedb-persist": "^0.1.0",
+    "ramda": "^0.19.1",
     "redux": "^3.0.4",
     "redux-decorated": "^0.1.2",
     "redux-persist": "^1.5.0",

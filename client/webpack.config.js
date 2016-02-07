@@ -1,6 +1,5 @@
-var OfflinePlugin = require('offline-plugin');
-
-var babelPlugins = [];
+const path = require('path');
+const OfflinePlugin = require('offline-plugin');
 
 const production = process.env.NODE_ENV === 'production';
 
@@ -19,14 +18,18 @@ var config = {
     loaders: [
       {
         test: /\.tsx?$/,
-        exclude: /node_modules\/(?!raxa-).*/,
+        exclude: /node_modules\/(?!raxa-common)/,
         loaders: [
           'react-hot',
           'babel?' + JSON.stringify({
-            presets: ['react', 'es2015', 'stage-1'],
-            plugins: production
-              ? ['transform-react-constant-elements', 'transform-react-inline-elements']
-              : [],
+            presets: [
+              require.resolve('babel-preset-react'),
+              require.resolve('babel-preset-es2015'),
+              require.resolve('babel-preset-stage-1'),
+            ],
+            //plugins: production
+            //  ? ['transform-react-constant-elements', 'transform-react-inline-elements']
+            //  : [],
           }),
          'ts',
        ],
@@ -39,23 +42,24 @@ var config = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx', '.ts', '.tsx'],
-    root: __dirname,
+    modulesDirectories: ['node_modules', path.resolve('./node_modules')]
+    //root: __dirname,
   },
-  plugins: [
-    new OfflinePlugin({
-      caches: 'all',
-      scope: '/Culinam/',
-      updateStrategy: 'hash',
-
-      ServiceWorker: {
-        output: 'sw.js',
-      },
-
-      AppCache: {
-        directory: 'appcache/',
-      }
-    }),
-  ],
+  //plugins: [
+  //  new OfflinePlugin({
+  //    caches: 'all',
+  //    scope: '/Culinam/',
+  //    updateStrategy: 'hash',
+  //
+  //    ServiceWorker: {
+  //      output: 'sw.js',
+  //    },
+  //
+  //    AppCache: {
+  //      directory: 'appcache/',
+  //    }
+  //  }),
+  //],
 };
 
 if (production) {

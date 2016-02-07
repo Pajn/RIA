@@ -5,7 +5,7 @@ import {Link, IndexRedirect, Router, Route} from 'react-router';
 import {Devices} from './components/devices';
 
 if (window.document) {
-  require('offline-plugin/runtime').install();
+  //require('offline-plugin/runtime').install();
 }
 
 class App extends React.Component<{children: JSX.Element}, {}> {

@@ -1,16 +1,17 @@
 /* tslint:disable:no-empty */
-import {devices} from './remote-procedures/devices';
-import {Call, Device, PluginDefinition} from './entities';
+import {Action} from './actions';
+import {Call, Device, Modification, PluginDefinition, Service} from './entities';
+import {State} from './state';
 
-export class Plugin {
+export class Plugin implements Service {
   definition: PluginDefinition;
-
   /**
    * Calls a device.
    */
-  callDevice(call: Call) {
-    devices.callDevice(call);
-  }
+  callDevice: (call: Call) => Promise<void>;
+  createDevice: (device: Device) => Promise<void>;
+  dispatch: <T>(action: Action<T>, payload?: T) => void;
+  getState: () => State;
 
   /**
    * Called when a device is being created from one of the plugins DeviceClasses
@@ -28,13 +29,28 @@ export class Plugin {
    * configuration or return undefined to don't do anything at all.
    * If a Promise is returned then RAXA will wait for it to be resolved.
    */
-  onDeviceCalled(call: Call, device: Device): Promise<any>|any {}
+  onDeviceCalled(call: Call, device: Device): void|Device|Promise<void|Device> {
+    return;
+  }
+
+  onDeviceStatusModified(modification: Modification, device: Device):
+      void|Promise<void> {
+    return;
+  }
 
   /**
-   * Called when the plugin is stopped, either becuse of beeing deactivated or RAXA stopping.
-   * If a Promise is returned then RAXA will wait for it to be resolved.
+   * Called when the plugin is stared, either becuse of beeing activated or when RAXA
+   * is starting. If a Promise is returned then RAXA will wait for it to be resolved.
    */
-  stop(): void|Promise<void> {
+  start(): void|Promise<any> {
+    return;
+  }
+
+  /**
+   * Called when the plugin is stopped, either becuse of beeing deactivated or when RAXA
+   * is stopping. If a Promise is returned then RAXA will wait for it to be resolved.
+   */
+  stop(): void|Promise<any> {
     return;
   }
 }

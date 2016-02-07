@@ -1,12 +1,17 @@
-import {createReducer, removeIn, updateIn} from 'redux-decorated';
+import {createReducer, clone, removeIn, updateIn} from 'redux-decorated';
 import {actions} from 'raxa-common/lib/actions';
 import {DeviceState} from 'raxa-common/lib/state';
+import {deleteByProperty} from '../helpers';
 
-export const devices = createReducer<DeviceState & {nextId: number}>({nextId: 1})
-  .when(actions.deviceAdded, (state, {device}) => {
+type State = DeviceState & {nextId: number};
+
+export const devices = createReducer<State>({nextId: 1})
+  .when(actions.deviceAdded, (state: State, {device}) => {
     state = updateIn('nextId', state.nextId + 1, state);
     return updateIn(device.id, device, state);
   })
-  .when(actions.deviceUpdated, (state, {device}) => updateIn(device.id, device, state))
-  .when(actions.deviceRemoved, (state, {device}) => removeIn(device.id, state))
+  .when(actions.deviceUpdated, ({device}) => updateIn(device.id, device))
+  .when(actions.deviceRemoved, ({device}) => removeIn(device.id))
+  .when(actions.deviceClassRemoved, deleteByProperty('deviceClass'))
+  .when(actions.pluginRemoved, deleteByProperty('plugin'))
   .build();

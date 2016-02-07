@@ -1,21 +1,36 @@
 import {Action as DecoratedAction, createActions} from 'redux-decorated';
-import {Device, PluginConfiguration} from './entities';
+import {Device, DeviceClass, Interface, PluginConfiguration} from './entities';
 
-interface Action<T> extends DecoratedAction<T> {
-  meta: {
+export interface Action<T> extends DecoratedAction<T> {
+  meta?: {
     toClient?: boolean;
     toServer?: boolean;
   };
 }
 
 class Actions {
-  deviceAdded: Action<{device: Device}> = {meta: {}};
-  deviceUpdated: Action<{device: Device}> = {meta: {}};
-  deviceRemoved: Action<{device: Device}> = {meta: {}};
+  deviceAdded: Action<{device: Device}> = {};
+  deviceUpdated: Action<{device: Device}> = {};
+  deviceRemoved: Action<{device: Device}> = {};
 
-  pluginAdded: Action<{plugin: PluginConfiguration}> = {meta: {toClient: true}};
-  pluginUpdated: Action<{plugin: PluginConfiguration}> = {meta: {toClient: true}};
-  pluginRemoved: Action<{plugin: PluginConfiguration}> = {meta: {toClient: true, toServer: true}};
+  deviceClassAdded: Action<{deviceClass: DeviceClass}> = {};
+  deviceClassUpdated: Action<{deviceClass: DeviceClass}> = {};
+  deviceClassRemoved: Action<{deviceClass: DeviceClass}> = {};
+
+  interfaceAdded: Action<{iface: Interface}> = {};
+  interfaceUpdated: Action<{iface: Interface}> = {};
+  interfaceRemoved: Action<{iface: Interface}> = {};
+
+  pluginAdded: Action<{plugin: PluginConfiguration}> = {};
+  pluginUpdated: Action<{plugin: PluginConfiguration}> = {};
+  pluginRemoved: Action<{plugin: PluginConfiguration}> = {};
+
+  statusUpdated: Action<{
+    deviceId: number,
+    interfaceId: string,
+    status: string,
+    value: any,
+  }> = {};
 }
 
 export const actions = createActions(Actions);

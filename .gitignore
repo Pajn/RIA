@@ -1,9 +1,11 @@
+.idea/
 .tmp/
 bin/
 dist/
 node_modules/
 */typings/**/*
 */typings_custom/**/*
-tsconfig.json
+db
 npm-debug.log
+tsconfig.json
 

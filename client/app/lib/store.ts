@@ -6,13 +6,25 @@ import {syncStoreEnhancer} from 'redux-websocket/lib/sync';
 import {State} from 'raxa-common/lib/state';
 import {websocketClient} from './websocket';
 
+const initialState = {
+  devices: {},
+  deviceClasses: {},
+  interfaces: {},
+  status: {},
+  versions: {},
+};
+
 const finalCreateStore = compose(
   autoRehydrate(),
-  syncStoreEnhancer({connection: websocketClient, whitelist: ['devices']}),
+  syncStoreEnhancer({
+    connection: websocketClient,
+    keys: ['devices', 'deviceClasses', 'interfaces', 'status'],
+    skipVersion: ['status'],
+  }),
   applyMiddleware(websocketMiddleware(websocketClient))
 )(createStore);
 
-export const store = finalCreateStore(state => state, {devices: {}, versions: {}});
+export const store = finalCreateStore(state => state, initialState);
 persistStore(store);
 
 const helpers = reactStore<State>(store);

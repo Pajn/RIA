@@ -1,0 +1,19 @@
+{
+  "name": "raxa-plugin-mysensors",
+  "version": "0.1.0",
+  "description": "MySensors controller for RAXA",
+  "main": "dist/plugin.js",
+  "scripts": {
+    "prepublish": "tsc -p ."
+  },
+  "author": "Rasmus Eneman <rasmus@eneman.eu>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "typescript": "^1.7.5",
+    "typings-package-manager": "^0.1.0"
+  },
+  "dependencies": {
+    "ramda": "^0.19.1",
+    "serialport": "^2.0.6"
+  }
+}
