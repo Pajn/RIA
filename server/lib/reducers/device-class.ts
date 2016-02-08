@@ -29,11 +29,8 @@ export const deviceClasses = createReducer<DeviceClassState>({
 },
   "interfaces": ["MySensors Gateway"]
 }})
-  .when(actions.deviceClassAdded, ({deviceClass}) =>
-      updateIn(deviceClass.id, deviceClass))
-  .when(actions.deviceClassUpdated, ({deviceClass}) =>
-      updateIn(deviceClass.id, deviceClass))
-  .when(actions.deviceClassRemoved, ({deviceClass}) =>
-      removeIn(deviceClass.id))
+  .when(actions.deviceClassAdded, ({deviceClass}) => updateIn(deviceClass.id, deviceClass))
+  .when(actions.deviceClassUpdated, ({deviceClass}) => updateIn(deviceClass.id, deviceClass))
+  .when(actions.deviceClassRemoved, ({deviceClass}) => removeIn(deviceClass.id))
   .when(actions.pluginRemoved, deleteByProperty('plugin'))
   .build();

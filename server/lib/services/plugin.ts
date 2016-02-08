@@ -1,4 +1,6 @@
+import {readFile} from 'fs-promise';
 import {join, resolve} from 'path';
+import * as R from 'ramda';
 import {PluginConfiguration, Service} from 'raxa-common/lib/entities';
 import {devices} from '../remote-procedures/devices';
 import {Plugin} from 'raxa-common/lib/plugin-base';
@@ -6,14 +8,16 @@ import {dispatch, store} from './store';
 
 export const plugins: {[id: string]: Plugin} = {};
 
-function readJsonFile(path: string): any {
-  return {main: 'dist/plugin.js', deviceClasses: {'MySensors Sensor': {}}};
+async function readJsonFile(path: string) {
+  const file = await readFile(path, {encoding: 'utf8'});
+
+  return JSON.parse(file);
 }
 
 export const pluginService: Service = {
   async start() {
-    return Promise.all((Object.values(store.getState().plugins) as PluginConfiguration[])
-      .filter(plugin => plugin.enabled)
+    return Promise.all((Object.values(store.getState().plugins))
+      .filter(R.prop('enabled'))
       .map(async ({id}) => {
         const pluginDefinitionPath = join('plugins', id, 'plugin.json');
         const packageJsonPath = join('plugins', id, 'package.json');
@@ -24,11 +28,13 @@ export const pluginService: Service = {
         if (plugin) {
           const PluginClass = plugin.default || plugin;
           const instance = new PluginClass() as Plugin;
-          instance.definition = await readJsonFile(pluginDefinitionPath);
-          instance.callDevice = devices.callDevice;
-          instance.createDevice = devices.createDevice;
-          instance.dispatch = dispatch;
-          instance.getState = store.getState;
+          Object.assign(instance, {
+            definition: await readJsonFile(pluginDefinitionPath),
+            callDevice: devices.callDevice,
+            createDevice: devices.createDevice,
+            dispatch,
+            getState: store.getState,
+          });
           await instance.start();
           plugins[id] = instance;
         }

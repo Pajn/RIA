@@ -4,7 +4,8 @@
   "description": "MySensors controller for RAXA",
   "main": "dist/plugin.js",
   "scripts": {
-    "prepublish": "tsc -p ."
+    "prepublish": "tsc -p .",
+    "watch": "tsc -p . --watch"
   },
   "author": "Rasmus Eneman <rasmus@eneman.eu>",
   "license": "Apache-2.0",

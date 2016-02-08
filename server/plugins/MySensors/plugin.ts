@@ -169,9 +169,12 @@ export default class MySensorsPlugin extends Plugin {
       parser: parsers.readline('\n'),
     });
 
+    let errors = 0;
+
     port.on('open', () => {
       console.log('connected to serial gateway at ' + serialPort);
       serialPorts[id] = port;
+      errors = 0;
     });
 
     port.on('end', () => {
@@ -185,7 +188,11 @@ export default class MySensorsPlugin extends Plugin {
 
     port.on('error', () => {
       console.log('connection error - trying to reconnect to ' + serialPort);
-      port.open();
+
+      setTimeout(() => {
+        port.open();
+      }, (errors ** 2) * 1000);
+      errors++;
     });
   }
 
@@ -341,9 +348,10 @@ export default class MySensorsPlugin extends Plugin {
     if (!path) return;
     const {interfaceId, status} = path;
     const device = this.getSensor(gatewayId, nodeId, sensor);
-    const value = this.getState().status[device.id][interfaceId][status];
 
     if (device) {
+      const value = this.getState().status[device.id][interfaceId][status];
+
       this.onDeviceStatusModified({
         deviceId: device.id,
         interfaceId,

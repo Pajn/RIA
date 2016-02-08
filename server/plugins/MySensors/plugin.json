@@ -1,8 +1,8 @@
 {
   "name": "MySensors",
   "description": "Plugin for MySensors serial gateway",
-  "deviceClasses": [
-    {
+  "deviceClasses": {
+    "Serial MySensors Gateway": {
       "id": "Serial MySensors Gateway",
       "name": "Serial MySensors Gateway",
       "config": {
@@ -12,7 +12,7 @@
       },
       "interfaces": ["MySensors Gateway"]
     },
-    {
+    "MySensors Sensor": {
       "id": "MySensors Sensor",
       "name": "MySensors Sensor",
       "config": {
@@ -28,7 +28,7 @@
       },
       "interfaces": ["MySensors Gateway"]
     }
-  ],
+  },
   "interfaces": [
     {
       "name": "MySensors Gateway",

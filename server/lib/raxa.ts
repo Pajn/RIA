@@ -34,11 +34,6 @@ async function start() {
 
     process.stdin.resume();
   } catch(e) {
-    //console.error('Uncaught exception', e);
-    //console.error(e.stack);
-    //console.error(Object.getOwnPropertyNames(e));
-    //console.error(JSON.stringify(e));
-    //process.exit(1);
     setImmediate(() => {throw e});
   }
 }
