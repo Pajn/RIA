@@ -1,11 +1,11 @@
-import {Interface} from './entities';
+import {Interface} from './entities'
 
 export const interfaceId = {
   Light: 'Light',
   Dimmer: 'Dimmer',
   RGB: 'RGB',
   Temperature: 'Temperature',
-};
+}
 
 export const defaultInterfaces: Interface[] = [
   {
@@ -60,4 +60,4 @@ export const defaultInterfaces: Interface[] = [
       temp: {type: 'integer', unit: '°C'},
     },
   },
-];
+]

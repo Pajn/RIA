@@ -1,17 +1,17 @@
 /* tslint:disable:no-empty */
-import {Action} from './actions';
-import {Call, Device, Modification, PluginDefinition, Service} from './entities';
-import {State} from './state';
+import {Action} from './actions'
+import {Call, Device, Modification, PluginDefinition, Service} from './entities'
+import {State} from './state'
 
 export class Plugin implements Service {
-  definition: PluginDefinition;
+  definition: PluginDefinition
   /**
    * Calls a device.
    */
-  callDevice: (call: Call) => Promise<void>;
-  createDevice: (device: Device) => Promise<void>;
-  dispatch: <T>(action: Action<T>, payload?: T) => void;
-  getState: () => State;
+  callDevice: (call: Call) => Promise<void>
+  createDevice: (device: Device) => Promise<void>
+  dispatch: <T>(action: Action<T>, payload?: T) => void
+  getState: () => State
 
   /**
    * Called when a device is being created from one of the plugins DeviceClasses
@@ -20,7 +20,7 @@ export class Plugin implements Service {
    * If a Promise is returned then RAXA will wait for it to be resolved.
    */
   onDeviceCreated(device: Device): void|Device|Promise<void|Device> {
-    return;
+    return
   }
 
   /**
@@ -30,12 +30,12 @@ export class Plugin implements Service {
    * If a Promise is returned then RAXA will wait for it to be resolved.
    */
   onDeviceCalled(call: Call, device: Device): void|Device|Promise<void|Device> {
-    return;
+    return
   }
 
   onDeviceStatusModified(modification: Modification, device: Device):
       void|Promise<void> {
-    return;
+    return
   }
 
   /**
@@ -43,7 +43,7 @@ export class Plugin implements Service {
    * is starting. If a Promise is returned then RAXA will wait for it to be resolved.
    */
   start(): void|Promise<any> {
-    return;
+    return
   }
 
   /**
@@ -51,6 +51,6 @@ export class Plugin implements Service {
    * is stopping. If a Promise is returned then RAXA will wait for it to be resolved.
    */
   stop(): void|Promise<any> {
-    return;
+    return
   }
 }

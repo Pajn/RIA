@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "raxa-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -24,13 +24,14 @@
     "express": "^4.13.3",
     "fs-promise": "^0.4.1",
     "fs.promised": "^3.0.0",
-    "nedb-persist": "^0.1.0",
+    "nedb-persist": "^0.1.2",
     "ramda": "^0.19.1",
-    "redux": "^3.0.4",
+    "redux": "^3.3.1",
     "redux-decorated": "^0.1.2",
     "redux-persist": "^1.5.0",
     "redux-websocket": "^0.1.0",
-    "require-dir": "^0.3.0"
+    "require-dir": "^0.3.0",
+    "rereduce": "0.0.3"
   },
   "devDependencies": {
     "babel": "^6.3.26",

@@ -1,16 +1,16 @@
-import {clone} from 'redux-decorated';
+import {clone} from 'redux-decorated'
 
 export function deleteByProperty(property) {
   return (state, payload) => {
-    const updatedState = clone(state);
+    const updatedState = clone(state)
 
     for (const id of Object.keys(state)) {
       if (state[id][property] === payload[property].id) {
-        delete updatedState[id];
+        delete updatedState[id]
       }
     }
 
-    return updatedState;
+    return updatedState
   }
 }
 
@@ -20,13 +20,12 @@ export function deleteByProperty(property) {
  */
 export function zipMap(keyMap: (obj) => any, valueMap: (obj) => any) {
   return values => {
-    const obj = {};
-    console.log(values);
+    const obj = {}
     for (const value of values) {
-      obj[keyMap(value)] = valueMap(value);
+      obj[keyMap(value)] = valueMap(value)
     }
-    return obj;
-  };
+    return obj
+  }
 }
 
 /**
@@ -36,11 +35,11 @@ export function zipMap(keyMap: (obj) => any, valueMap: (obj) => any) {
 export function logAndPassThrough(message?) {
   return obj => {
     if (message) {
-      console.log(message, obj);
+      console.log(message, obj)
     } else {
-      console.log(obj);
+      console.log(obj)
     }
 
-    return obj;
+    return obj
   }
 }

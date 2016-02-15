@@ -1,36 +1,35 @@
-import {Action as DecoratedAction, createActions} from 'redux-decorated';
-import {Device, DeviceClass, Interface, PluginConfiguration} from './entities';
+import {Action as DecoratedAction, createActions} from 'redux-decorated'
+import {Device, DeviceClass, Interface, PluginConfiguration} from './entities'
+import {InterfaceState} from './state'
 
 export interface Action<T> extends DecoratedAction<T> {
   meta?: {
-    toClient?: boolean;
-    toServer?: boolean;
-  };
+    toClient?: boolean
+    toServer?: boolean
+  }
 }
 
-class Actions {
-  deviceAdded: Action<{device: Device}> = {};
-  deviceUpdated: Action<{device: Device}> = {};
-  deviceRemoved: Action<{device: Device}> = {};
+export const actions = createActions({
+  deviceAdded: {} as Action<{device: Device, interfaces: InterfaceState}>,
+  deviceUpdated: {} as Action<{device: Device}>,
+  deviceRemoved: {} as Action<{device: Device}>,
 
-  deviceClassAdded: Action<{deviceClass: DeviceClass}> = {};
-  deviceClassUpdated: Action<{deviceClass: DeviceClass}> = {};
-  deviceClassRemoved: Action<{deviceClass: DeviceClass}> = {};
+  deviceClassAdded: {} as Action<{deviceClass: DeviceClass}>,
+  deviceClassUpdated: {} as Action<{deviceClass: DeviceClass}>,
+  deviceClassRemoved: {} as Action<{deviceClass: DeviceClass}>,
 
-  interfaceAdded: Action<{iface: Interface}> = {};
-  interfaceUpdated: Action<{iface: Interface}> = {};
-  interfaceRemoved: Action<{iface: Interface}> = {};
+  interfaceAdded: {} as Action<{iface: Interface}>,
+  interfaceUpdated: {} as Action<{iface: Interface}>,
+  interfaceRemoved: {} as Action<{iface: Interface}>,
 
-  pluginAdded: Action<{plugin: PluginConfiguration}> = {};
-  pluginUpdated: Action<{plugin: PluginConfiguration}> = {};
-  pluginRemoved: Action<{plugin: PluginConfiguration}> = {};
+  pluginAdded: {} as Action<{plugin: PluginConfiguration}>,
+  pluginUpdated: {} as Action<{plugin: PluginConfiguration}>,
+  pluginRemoved: {} as Action<{plugin: PluginConfiguration}>,
 
-  statusUpdated: Action<{
+  statusUpdated: {} as Action<{
     deviceId: number,
     interfaceId: string,
     status: string,
     value: any,
-  }> = {};
-}
-
-export const actions = createActions(Actions);
+  }>,
+})

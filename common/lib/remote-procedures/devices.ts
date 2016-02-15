@@ -1,5 +1,5 @@
-import {remoteProcedures} from 'redux-websocket/lib/rpc';
-import {Call, Device, Modification} from '../entities.ts';
+import {remoteProcedures} from './index'
+import {Call, Device, Modification} from '../entities.ts'
 
 @remoteProcedures()
 export class Devices {
@@ -9,4 +9,4 @@ export class Devices {
   async modifyDeviceStatus(modification: Modification) {}
 }
 
-export const devices = new Devices();
+export const devices = new Devices()

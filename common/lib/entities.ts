@@ -1,30 +1,30 @@
 export interface Device {
-  id?: number;
+  id?: number
   /**
    * Name of this Device, it must be unique.
    */
-  name: string;
+  name: string
   /**
    * Id of the plugin that owns this Device.
    */
-  plugin: string;
+  plugin: string
   /**
    * Id of the DeviceClass the Device implements.
    */
-  deviceClass: string;
+  deviceClass: string
   /**
    * Configuration values for the plugin.
    */
-  config?: {[id: string]: any};
+  config?: {[id: string]: any}
   /**
    * A list with names of the Interfaces that the Device implements.
    */
-  interfaces?: string[];
+  interfaces?: string[]
   /**
    * Variables of the device as required by the implemented interfaces.
    * Every implemented interface with variables have its own object with its variables.
    */
-  variables?: {[interfaceId: string]: {[variableName: string]: any}};
+  variables?: {[interfaceId: string]: {[variableName: string]: any}}
 }
 
 /**
@@ -35,114 +35,114 @@ export interface Device {
  * created primarily by the user.
  */
 export interface DeviceClass {
-  id: string;
+  id: string
   /**
    * Name of this DeviceClass, it must be unique inside the plugin.
    */
-  name: string;
+  name: string
   /**
    * Id of the plugin that owns this DeviceClass.
    */
-  plugin: string;
+  plugin: string
   /**
    * Configuration values for the plugin that is set by the user while creating the Device.
    */
-  config?: {[id: string]: Config<any>};
+  config?: {[id: string]: Config<any>}
   /**
    * A list with names of the Interfaces that the Device created from this class implements.
    */
-  interfaces: string[];
+  interfaces: string[]
   /**
    * Static variables of the device as required by the implemented interfaces.
    * Every implemented interface with variables have its own object with its variables.
    */
-  variables?: {[interfaceId: string]: {[variableName: string]: any}};
+  variables?: {[interfaceId: string]: {[variableName: string]: any}}
 }
 
 export interface Interface {
-  id: string;
-  name: string;
+  id: string
+  name: string
   /**
    * Id of the plugin that specifies this Interface.
    * undefined if specified by RAXA.
    */
-  plugin?: string;
+  plugin?: string
 
-  methods?: {[method: string]: any};
-  status?: {[status: string]: any};
-  variables?: {[variable: string]: any};
+  methods?: {[method: string]: any}
+  status?: {[status: string]: any}
+  variables?: {[variable: string]: any}
 }
 
 export interface Call {
   /**
    * Id of the Device to be called.
    */
-  deviceId: number;
+  deviceId: number
   /**
    * Id of the interface the method is defined in.
    */
-  interface: string;
+  interface: string
   /**
    * Method to be called.
    */
-  method: string;
+  method: string
   /**
    * Arguments to the method.
    */
-  arguments: any;
+  arguments: any
 }
 
 export interface Modification {
   /**
    * Id of the Device to be modified.
    */
-  deviceId: number;
+  deviceId: number
   /**
    * Id of the interface the status is defined in.
    */
-  interfaceId: string;
+  interfaceId: string
   /**
    * Status to be modified.
    */
-  status: string;
+  status: string
   /**
    * New value of the status.
    */
-  value: any;
+  value: any
 }
 
 export interface Config<T> {
   /**
    * Display name of the field.
    */
-  name?: string;
+  name?: string
   /**
    * Additional description of the field.
    */
-  description?: string;
+  description?: string
   /**
    * Type of the field
    */
-  type: string;
-  value?: T;
+  type: string
+  value?: T
 }
 
 export interface PluginDefinition {
-  id: string;
-  name: string;
-  deviceClasses: {[id: string]: DeviceClass};
-  interfaces: {[id: string]: Interface};
+  id: string
+  name: string
+  deviceClasses: {[id: string]: DeviceClass}
+  interfaces: {[id: string]: Interface}
 }
 
 export interface PluginConfiguration {
-  id: string;
-  name: string;
-  enabled: boolean;
+  id: string
+  name: string
+  enabled: boolean
 }
 
 export interface Service {
-  start(): void|Promise<any>;
-  stop(): void|Promise<any>;
+  start(): void|Promise<any>
+  stop(): void|Promise<any>
 }
 
 /**

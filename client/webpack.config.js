@@ -1,5 +1,6 @@
 const path = require('path');
 const OfflinePlugin = require('offline-plugin');
+const webpack = require('webpack');
 
 const production = process.env.NODE_ENV === 'production';
 
@@ -45,26 +46,25 @@ var config = {
     modulesDirectories: ['node_modules', path.resolve('./node_modules')]
     //root: __dirname,
   },
-  //plugins: [
-  //  new OfflinePlugin({
-  //    caches: 'all',
-  //    scope: '/Culinam/',
-  //    updateStrategy: 'hash',
-  //
-  //    ServiceWorker: {
-  //      output: 'sw.js',
-  //    },
-  //
-  //    AppCache: {
-  //      directory: 'appcache/',
-  //    }
-  //  }),
-  //],
+  plugin: [
+    new webpack.optimize.DedupePlugin(),
+    new OfflinePlugin({
+      caches: 'all',
+      scope: '/',
+      updateStrategy: 'hash',
+
+      ServiceWorker: {
+        output: 'sw.js',
+      },
+
+      AppCache: {
+        directory: 'appcache/',
+      }
+    }),
+  ],
 };
 
 if (production) {
-  var webpack = require('webpack');
-
   config.plugins = config.plugins.concat([
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
